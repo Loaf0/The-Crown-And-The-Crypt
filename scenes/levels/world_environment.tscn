@@ -2,24 +2,25 @@
 
 [ext_resource type="Texture2D" uid="uid://bl5alisinxpya" path="res://assets/2d/textures/skyboxes/Epic_BlueSunset_EquiRect_flat.png" id="1_cdkjo"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_nvy1u"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_cdkjo"]
 panorama = ExtResource("1_cdkjo")
 
-[sub_resource type="Sky" id="Sky_smerw"]
-sky_material = SubResource("PanoramaSkyMaterial_nvy1u")
+[sub_resource type="Sky" id="Sky_4uq8i"]
+sky_material = SubResource("PanoramaSkyMaterial_cdkjo")
 
-[sub_resource type="Environment" id="Environment_yx20g"]
+[sub_resource type="Environment" id="Environment_tc0nl"]
 background_mode = 2
-sky = SubResource("Sky_smerw")
-tonemap_mode = 2
-tonemap_exposure = 0.7
-tonemap_white = 1.02
+sky = SubResource("Sky_4uq8i")
+reflected_light_source = 2
+ssr_enabled = true
 ssao_enabled = true
-ssil_enabled = true
 sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_y_scale = 2
 sdfgi_energy = 1.5
 adjustment_enabled = true
-adjustment_saturation = 1.2
+adjustment_contrast = 1.2
+adjustment_saturation = 1.5
 
-[node name="WorldEnvironment" type="WorldEnvironment"]
-environment = SubResource("Environment_yx20g")
+[node name="WorldEnvironment2" type="WorldEnvironment"]
+environment = SubResource("Environment_tc0nl")

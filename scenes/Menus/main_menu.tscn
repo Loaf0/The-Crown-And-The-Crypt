@@ -1,8 +1,8 @@
-[gd_scene load_steps=53 format=4 uid="uid://dp8ajof33rkyy"]
+[gd_scene format=4 uid="uid://dp8ajof33rkyy"]
 
 [ext_resource type="Script" uid="uid://hlx1lumkqmgk" path="res://scenes/Menus/main_menu.gd" id="1_qm178"]
 [ext_resource type="PackedScene" uid="uid://bcm2jbg48g5aj" path="res://scenes/levels/test2/map.tscn" id="2_3b8pq"]
-[ext_resource type="PackedScene" uid="uid://dugaivbj1o66n" path="res://scenes/levels/test2/level.tscn" id="2_cvoyn"]
+[ext_resource type="PackedScene" uid="uid://dugaivbj1o66n" path="res://scenes/levels/level.tscn" id="2_cvoyn"]
 [ext_resource type="Texture2D" uid="uid://cw6pxwst2gh85" path="res://assets/3d/Models/player/GodotRobotPaletteSwap/GodotYellowPalette.png" id="3_4dwwe"]
 [ext_resource type="Texture2D" uid="uid://bdg48m6l86q8i" path="res://assets/3d/Models/player/3DGodotRobot_GodotPalette.png" id="3_qm178"]
 [ext_resource type="FontFile" uid="uid://djre78oagy06t" path="res://assets/2d/fonts/Kurland.ttf" id="3_xfgxo"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dllvhx80jhn3a" path="res://assets/3d/Models/player/GodotRobotPaletteSwap/GodotRustPalette.png" id="12_cd3bg"]
 [ext_resource type="Texture2D" uid="uid://b17mr6rpieusg" path="res://assets/3d/Models/player/GodotRobotPaletteSwap/GodotPinkPalette.png" id="13_rfxsq"]
 [ext_resource type="Texture2D" uid="uid://cgfoy48d083di" path="res://assets/3d/Models/player/GodotRobotPaletteSwap/GodotOrangePalette.png" id="14_5mo5h"]
+[ext_resource type="VoxelGIData" uid="uid://l4e46q6b2mfb" path="res://scenes/Menus/main_menu.VoxelGI_data.res" id="16_4dwwe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dk1he"]
 resource_name = "Material"
@@ -5180,7 +5181,7 @@ _data = {
 &"WallSlide": SubResource("Animation_ef22y")
 }
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=1700561084]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -5205,20 +5206,26 @@ rust_texture = ExtResource("12_cd3bg")
 pink_texture = ExtResource("13_rfxsq")
 orange_texture = ExtResource("14_5mo5h")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1791211592]
 
-[node name="Map" parent="CanvasLayer" instance=ExtResource("2_3b8pq")]
+[node name="VoxelGI" type="VoxelGI" parent="CanvasLayer" unique_id=940101258]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7766, -35.534702, -1.14944)
+size = Vector3(30, 20, 39)
+data = ExtResource("16_4dwwe")
+
+[node name="Map" parent="CanvasLayer" unique_id=743887978 instance=ExtResource("2_3b8pq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7766, -45, -1.64944)
 
-[node name="MainMenuCamera" type="Camera3D" parent="CanvasLayer"]
+[node name="MainMenuCamera" type="Camera3D" parent="CanvasLayer" unique_id=1778186376]
+transform = Transform3D(0.8660254, -2.3841858e-07, 0.5, 0, 1, 4.7683716e-07, -0.5, -4.1295309e-07, 0.8660254, -24.745653, -41.473045, -6.1323485)
 
-[node name="3DGodotRobot" type="Node3D" parent="CanvasLayer"]
+[node name="3DGodotRobot" type="Node3D" parent="CanvasLayer" unique_id=913695183]
 transform = Transform3D(-0.5, -2.98023e-08, 0.866026, 0, 1, -7.45058e-08, -0.866025, 1.49012e-07, -0.5, -27.9, -42.8, 7.99999)
 
-[node name="RobotArmature" type="Node3D" parent="CanvasLayer/3DGodotRobot"]
+[node name="RobotArmature" type="Node3D" parent="CanvasLayer/3DGodotRobot" unique_id=74596753]
 transform = Transform3D(0.578472, 0, 0, 0, 0.578472, 0, 0, 0, 0.578472, 0, 0, 0)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="CanvasLayer/3DGodotRobot/RobotArmature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="CanvasLayer/3DGodotRobot/RobotArmature" unique_id=1966837245]
 bones/0/name = "spine"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 9.10383e-15, 2.38419e-07, 7.10847e-09, 0.999555, -0.0298151, -2.38313e-07, 0.0298151, 0.999556, 8.26265e-18, 0.90683, 0.0298551)
@@ -5395,42 +5402,259 @@ bones/24/position = Vector3(-1.90709e-08, 0.251469, -1.65948e-08)
 bones/24/rotation = Quaternion(-6.34575e-08, -0.980764, 0.195196, 1.82779e-06)
 bones/24/scale = Vector3(1, 1, 1)
 
-[node name="Bottom" type="MeshInstance3D" parent="CanvasLayer/3DGodotRobot/RobotArmature/Skeleton3D"]
+[node name="Bottom" type="MeshInstance3D" parent="CanvasLayer/3DGodotRobot/RobotArmature/Skeleton3D" unique_id=603219453]
 mesh = SubResource("ArrayMesh_ujsui")
 skin = SubResource("Skin_kplnv")
 surface_material_override/0 = SubResource("StandardMaterial3D_vxvkj")
 
-[node name="Chest" type="MeshInstance3D" parent="CanvasLayer/3DGodotRobot/RobotArmature/Skeleton3D"]
+[node name="Chest" type="MeshInstance3D" parent="CanvasLayer/3DGodotRobot/RobotArmature/Skeleton3D" unique_id=393793165]
 mesh = SubResource("ArrayMesh_47qdy")
 skin = SubResource("Skin_dkvoy")
 surface_material_override/0 = SubResource("StandardMaterial3D_vxvkj")
 
-[node name="Face" type="MeshInstance3D" parent="CanvasLayer/3DGodotRobot/RobotArmature/Skeleton3D"]
+[node name="Face" type="MeshInstance3D" parent="CanvasLayer/3DGodotRobot/RobotArmature/Skeleton3D" unique_id=1650477159]
 mesh = SubResource("ArrayMesh_van0j")
 skin = SubResource("Skin_1prqp")
 surface_material_override/0 = SubResource("StandardMaterial3D_vxvkj")
 
-[node name="Llimbs and head" type="MeshInstance3D" parent="CanvasLayer/3DGodotRobot/RobotArmature/Skeleton3D"]
+[node name="Llimbs and head" type="MeshInstance3D" parent="CanvasLayer/3DGodotRobot/RobotArmature/Skeleton3D" unique_id=2020289344]
 mesh = SubResource("ArrayMesh_4tpnb")
 skin = SubResource("Skin_rxoxb")
 surface_material_override/0 = SubResource("StandardMaterial3D_vxvkj")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/3DGodotRobot"]
-libraries = {
-&"": SubResource("AnimationLibrary_f1v7x")
-}
-autoplay = "Idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/3DGodotRobot" unique_id=56672630]
+libraries/ = SubResource("AnimationLibrary_f1v7x")
+autoplay = &"Idle"
 
-[node name="CameraLocations" type="Node3D" parent="CanvasLayer"]
+[node name="3DGodotRobot2" type="Node3D" parent="CanvasLayer" unique_id=755401616]
+transform = Transform3D(0.70710635, -1.5164794e-07, 0.70710695, 0, 1, -7.45058e-08, -0.7071067, 9.780338e-09, 0.7071073, -26.9, -42.8, -10.00001)
 
-[node name="Character Select Pos" type="Node3D" parent="CanvasLayer/CameraLocations"]
+[node name="Nickname" type="Label3D" parent="CanvasLayer/3DGodotRobot2" unique_id=2034779395]
+transform = Transform3D(1, -3.5527137e-15, 0, 0, 1, 0, 0, -9.325873e-15, 1, 1.9073486e-06, 1.8368492, 0)
+billboard = 1
+outline_modulate = Color(0, 0, 0, 0.301961)
+text = "Player"
+
+[node name="RobotArmature" type="Node3D" parent="CanvasLayer/3DGodotRobot2" unique_id=659273269]
+transform = Transform3D(0.578472, 0, 0, 0, 0.578472, 0, 0, 0, 0.578472, 0, 0, 0)
+
+[node name="Skeleton3D" type="Skeleton3D" parent="CanvasLayer/3DGodotRobot2/RobotArmature" unique_id=403003627]
+bones/0/name = "spine"
+bones/0/parent = -1
+bones/0/rest = Transform3D(1, 9.10383e-15, 2.38419e-07, 7.10847e-09, 0.999555, -0.0298151, -2.38313e-07, 0.0298151, 0.999556, 8.26265e-18, 0.90683, 0.0298551)
+bones/0/enabled = true
+bones/0/position = Vector3(-3.5256e-16, 0.861288, 0.0298551)
+bones/0/rotation = Quaternion(0.0149092, 1.19196e-07, 1.77731e-09, 0.999889)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/name = "spine.001"
+bones/1/parent = 0
+bones/1/rest = Transform3D(1, -1.40362e-08, 4.13501e-10, 1.40362e-08, 0.998266, -0.0588722, 4.13562e-10, 0.0588722, 0.998266, -3.15279e-15, 0.264173, 5.80784e-09)
+bones/1/enabled = true
+bones/1/position = Vector3(-3.15279e-15, 0.264173, 5.80784e-09)
+bones/1/rotation = Quaternion(0.0294489, -1.52182e-14, 7.02117e-09, 0.999566)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/name = "spine.002"
+bones/2/parent = 1
+bones/2/rest = Transform3D(1, 2.54997e-08, -4.7547e-07, 2.54996e-08, 0.994264, 0.106953, 4.7547e-07, -0.106953, 0.994264, -3.69508e-15, 0.169598, 7.45058e-09)
+bones/2/enabled = true
+bones/2/position = Vector3(-3.69508e-15, 0.169598, 7.45058e-09)
+bones/2/rotation = Quaternion(-0.0535535, -2.38076e-07, -2.22364e-15, 0.998565)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/name = "spine.003"
+bones/3/parent = 2
+bones/3/rest = Transform3D(1, -3.97482e-09, 2.38385e-07, -1.33227e-15, 0.999861, 0.0166716, -2.38419e-07, -0.0166716, 0.999861, 2.27648e-15, 0.138171, 1.86161e-09)
+bones/3/enabled = true
+bones/3/position = Vector3(2.27648e-15, 0.138171, 1.86161e-09)
+bones/3/rotation = Quaternion(-0.0083361, 1.19205e-07, 9.93739e-10, 0.999965)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/name = "spine.004"
+bones/4/parent = 3
+bones/4/rest = Transform3D(1, 6.66134e-16, -2.38419e-07, -2.57501e-09, 0.999942, -0.0108004, 2.38405e-07, 0.0108004, 0.999942, -2.88374e-16, 0.176079, -0.0108779)
+bones/4/enabled = true
+bones/4/position = Vector3(-3.65722e-16, 0.151501, -0.011741)
+bones/4/rotation = Quaternion(0.00540027, -1.19208e-07, -6.43763e-10, 0.999986)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/name = "Head"
+bones/5/parent = 4
+bones/5/rest = Transform3D(1, 3.91584e-09, -3.22583e-11, -3.91584e-09, 0.999865, -0.0164242, -3.20606e-11, 0.0164242, 0.999865, -8.70283e-16, 0.138682, 3.72529e-09)
+bones/5/enabled = true
+bones/5/position = Vector3(-8.70283e-16, 0.138682, 3.72529e-09)
+bones/5/rotation = Quaternion(0.00821238, -4.9429e-14, -1.95798e-09, 0.999966)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/name = "HeadTop"
+bones/6/parent = 5
+bones/6/rest = Transform3D(1, 1.87855e-09, 2.38411e-07, -2.22045e-16, 0.999969, -0.00787923, -2.38419e-07, 0.00787923, 0.999969, 2.16882e-17, 0.646177, 1.87855e-09)
+bones/6/enabled = true
+bones/6/position = Vector3(2.16882e-17, 0.646177, 1.87855e-09)
+bones/6/rotation = Quaternion(0.00393965, 1.19208e-07, -4.69642e-10, 0.999992)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/name = "Eyes"
+bones/7/parent = 5
+bones/7/rest = Transform3D(1, 1.87855e-09, 2.38411e-07, 0, 0.999969, -0.00787921, -2.38419e-07, 0.00787921, 0.999969, 7.44409e-08, 0.540609, 0.312228)
+bones/7/enabled = true
+bones/7/position = Vector3(7.44409e-08, 0.540609, 0.312228)
+bones/7/rotation = Quaternion(0.00393964, 1.19208e-07, -4.69641e-10, 0.999992)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/name = "Chin"
+bones/8/parent = 5
+bones/8/rest = Transform3D(1, 1.87855e-09, 2.38411e-07, 0, 0.999969, -0.00787921, -2.38419e-07, 0.00787921, 0.999969, 9.98369e-08, 0.0857493, 0.418746)
+bones/8/enabled = true
+bones/8/position = Vector3(9.97907e-08, 0.0611572, 0.418552)
+bones/8/rotation = Quaternion(0.00393964, 1.19208e-07, -4.69641e-10, 0.999992)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/name = "shoulder.L"
+bones/9/parent = 3
+bones/9/rest = Transform3D(0.0360757, 0.999142, 0.0203239, -0.0345019, -0.0190798, 0.999223, 0.998753, -0.0367489, 0.0337839, 0.267321, 0.0764983, -0.028224)
+bones/9/enabled = true
+bones/9/position = Vector3(0.267321, 0.0764983, -0.028224)
+bones/9/rotation = Quaternion(-0.523067, -0.457802, -0.521926, 0.49438)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/name = "upper_arm.L"
+bones/10/parent = 9
+bones/10/rest = Transform3D(-0.106441, 0.0606935, 0.992465, -0.00297219, 0.998111, -0.0613576, -0.994315, -0.00948077, -0.10606, 0.00943596, 0.223043, -8.37785e-05)
+bones/10/enabled = true
+bones/10/position = Vector3(0.00943596, 0.223043, -8.37785e-05)
+bones/10/rotation = Quaternion(-0.356441, 0.617847, -0.433107, 0.551029)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/name = "forearm.L"
+bones/11/parent = 10
+bones/11/rest = Transform3D(0.98184, -0.0507598, -0.182795, 0.0571828, 0.997912, 0.0300364, 0.180889, -0.0399437, 0.982692, -1.57789e-07, 0.280382, -1.0906e-08)
+bones/11/enabled = true
+bones/11/position = Vector3(-1.57789e-07, 0.280382, -1.0906e-08)
+bones/11/rotation = Quaternion(-0.0175777, -0.091351, 0.0271132, 0.995294)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/name = "hand.L"
+bones/12/parent = 11
+bones/12/rest = Transform3D(0.998796, 0.0360371, 0.0332857, -0.0346117, 0.998499, -0.0424496, -0.0347655, 0.0412464, 0.998544, -3.72351e-07, 0.225629, 2.17875e-08)
+bones/12/enabled = true
+bones/12/position = Vector3(-3.72351e-07, 0.225629, 2.17875e-08)
+bones/12/rotation = Quaternion(0.0209349, 0.0170217, -0.0176714, 0.99948)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/name = "shoulder.R"
+bones/13/parent = 3
+bones/13/rest = Transform3D(0.0360757, -0.999142, -0.0203239, 0.0345019, -0.0190798, 0.999223, -0.998753, -0.0367489, 0.0337839, -0.267321, 0.0764983, -0.028224)
+bones/13/enabled = true
+bones/13/position = Vector3(-0.267321, 0.0764983, -0.028224)
+bones/13/rotation = Quaternion(-0.523067, 0.457802, 0.521926, 0.49438)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/name = "upper_arm.R"
+bones/14/parent = 13
+bones/14/rest = Transform3D(-0.106441, -0.0606935, -0.992465, 0.00297219, 0.998111, -0.0613576, 0.994315, -0.00948077, -0.10606, -0.00943596, 0.223043, -8.37785e-05)
+bones/14/enabled = true
+bones/14/position = Vector3(-0.00943596, 0.223043, -8.37785e-05)
+bones/14/rotation = Quaternion(-0.356441, -0.617847, 0.433107, 0.551029)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/name = "forearm.R"
+bones/15/parent = 14
+bones/15/rest = Transform3D(0.98184, 0.0507598, 0.182795, -0.0571828, 0.997912, 0.0300364, -0.180889, -0.0399437, 0.982692, 1.57789e-07, 0.280382, -1.0906e-08)
+bones/15/enabled = true
+bones/15/position = Vector3(1.57789e-07, 0.280382, -1.0906e-08)
+bones/15/rotation = Quaternion(-0.0175777, 0.091351, -0.0271132, 0.995294)
+bones/15/scale = Vector3(1, 1, 1)
+bones/16/name = "hand.R"
+bones/16/parent = 15
+bones/16/rest = Transform3D(0.998796, -0.0360371, -0.0332857, 0.0346117, 0.998499, -0.0424496, 0.0347655, 0.0412464, 0.998544, 3.72351e-07, 0.225629, 2.17875e-08)
+bones/16/enabled = true
+bones/16/position = Vector3(3.72351e-07, 0.225629, 2.17875e-08)
+bones/16/rotation = Quaternion(0.0209349, -0.0170217, 0.0176714, 0.99948)
+bones/16/scale = Vector3(1, 1, 1)
+bones/17/name = "thigh.L"
+bones/17/parent = 0
+bones/17/rest = Transform3D(0.999169, 0.0422695, -0.00959818, 0.0419598, -0.998643, -0.0308697, -0.0108906, 0.0304362, -0.999534, 0.276084, 0.0659952, -0.00346868)
+bones/17/enabled = true
+bones/17/position = Vector3(0.276084, 0.0659952, -0.00346868)
+bones/17/rotation = Quaternion(0.991415, 0.0203396, -0.00748625, 0.128945)
+bones/17/scale = Vector3(1.00011, 1, 1.00006)
+bones/18/name = "shin.L"
+bones/18/parent = 17
+bones/18/rest = Transform3D(0.998494, -0.0540184, 0.00956905, 0.0538958, 0.998466, 0.012631, -0.0102367, -0.0120962, 0.999874, -5.17625e-09, 0.374795, -3.10704e-09)
+bones/18/enabled = true
+bones/18/position = Vector3(-5.17625e-09, 0.374795, -3.10704e-09)
+bones/18/rotation = Quaternion(0.249628, 0.00871771, 0.024974, 0.967981)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/name = "foot.L"
+bones/19/parent = 18
+bones/19/rest = Transform3D(0.999932, 0.00648757, 0.00970069, -0.0116559, 0.514227, 0.857575, 0.000575222, -0.85763, 0.514268, 8.31179e-09, 0.334457, -5.94341e-09)
+bones/19/enabled = true
+bones/19/position = Vector3(8.31179e-09, 0.334457, -5.94341e-09)
+bones/19/rotation = Quaternion(-0.608714, 0.00331542, -0.00479121, 0.793369)
+bones/19/scale = Vector3(1, 1, 1)
+bones/20/name = "toe.L"
+bones/20/parent = 19
+bones/20/rest = Transform3D(-1, 5.912e-07, 3.60961e-06, -8.35906e-07, 0.923797, -0.382882, -3.56091e-06, -0.382882, -0.923797, 4.99904e-08, 0.251469, -2.97474e-08)
+bones/20/enabled = true
+bones/20/position = Vector3(4.99904e-08, 0.251469, -2.97474e-08)
+bones/20/rotation = Quaternion(-6.23762e-08, 0.980764, -0.195196, 1.82779e-06)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/name = "thigh.R"
+bones/21/parent = 0
+bones/21/rest = Transform3D(0.999168, -0.0422695, 0.00959819, -0.0419598, -0.998643, -0.0308697, 0.0108906, 0.0304362, -0.999534, -0.276084, 0.0659953, -0.00346881)
+bones/21/enabled = true
+bones/21/position = Vector3(-0.276084, 0.0659953, -0.00346881)
+bones/21/rotation = Quaternion(0.991415, -0.0203396, 0.00748626, 0.128945)
+bones/21/scale = Vector3(1.00011, 1, 1.00006)
+bones/22/name = "shin.R"
+bones/22/parent = 21
+bones/22/rest = Transform3D(0.998494, 0.0540184, -0.00956902, -0.0538959, 0.998467, 0.012631, 0.0102367, -0.0120963, 0.999875, -4.78381e-09, 0.374795, -3.10751e-09)
+bones/22/enabled = true
+bones/22/position = Vector3(-4.78381e-09, 0.374795, -3.10751e-09)
+bones/22/rotation = Quaternion(0.249628, -0.00871765, -0.0249741, 0.96798)
+bones/22/scale = Vector3(1, 1, 1)
+bones/23/name = "foot.R"
+bones/23/parent = 22
+bones/23/rest = Transform3D(0.999932, -0.00648758, -0.0097007, 0.011656, 0.514227, 0.857575, -0.000575223, -0.85763, 0.514267, 2.49345e-08, 0.334457, -1.36528e-08)
+bones/23/enabled = true
+bones/23/position = Vector3(2.49345e-08, 0.334457, -1.36528e-08)
+bones/23/rotation = Quaternion(-0.608714, -0.00331544, 0.00479126, 0.793369)
+bones/23/scale = Vector3(1, 1, 1)
+bones/24/name = "toe.R"
+bones/24/parent = 23
+bones/24/rest = Transform3D(-1, -5.89079e-07, -3.61003e-06, 8.38026e-07, 0.923797, -0.382882, 3.56048e-06, -0.382882, -0.923797, -1.90709e-08, 0.251469, -1.65948e-08)
+bones/24/enabled = true
+bones/24/position = Vector3(-1.90709e-08, 0.251469, -1.65948e-08)
+bones/24/rotation = Quaternion(-6.34575e-08, -0.980764, 0.195196, 1.82779e-06)
+bones/24/scale = Vector3(1, 1, 1)
+
+[node name="Bottom" type="MeshInstance3D" parent="CanvasLayer/3DGodotRobot2/RobotArmature/Skeleton3D" unique_id=554008785]
+mesh = SubResource("ArrayMesh_ujsui")
+skin = SubResource("Skin_kplnv")
+surface_material_override/0 = SubResource("StandardMaterial3D_vxvkj")
+
+[node name="Chest" type="MeshInstance3D" parent="CanvasLayer/3DGodotRobot2/RobotArmature/Skeleton3D" unique_id=1156432664]
+mesh = SubResource("ArrayMesh_47qdy")
+skin = SubResource("Skin_dkvoy")
+surface_material_override/0 = SubResource("StandardMaterial3D_vxvkj")
+
+[node name="Face" type="MeshInstance3D" parent="CanvasLayer/3DGodotRobot2/RobotArmature/Skeleton3D" unique_id=1101611111]
+mesh = SubResource("ArrayMesh_van0j")
+skin = SubResource("Skin_1prqp")
+surface_material_override/0 = SubResource("StandardMaterial3D_vxvkj")
+
+[node name="Llimbs and head" type="MeshInstance3D" parent="CanvasLayer/3DGodotRobot2/RobotArmature/Skeleton3D" unique_id=1961709519]
+mesh = SubResource("ArrayMesh_4tpnb")
+skin = SubResource("Skin_rxoxb")
+surface_material_override/0 = SubResource("StandardMaterial3D_vxvkj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/3DGodotRobot2" unique_id=2034832597]
+libraries/ = SubResource("AnimationLibrary_f1v7x")
+autoplay = &"Idle"
+
+[node name="CameraLocations" type="Node3D" parent="CanvasLayer" unique_id=408501105]
+
+[node name="Main Pos" type="Node3D" parent="CanvasLayer/CameraLocations" unique_id=1341186887]
+transform = Transform3D(1, 0, 0, 0, 0.49999923, 0.866025, 0, -0.866025, 0.49999923, -24.745653, -41.473045, -6.1323485)
+
+[node name="Main Look Pos" type="Node3D" parent="CanvasLayer/CameraLocations" unique_id=15991719]
+transform = Transform3D(1, 0, 0, 0, 0.49999923, 0.866025, 0, -0.866025, 0.49999923, -25.689493, -41.473045, -10.132348)
+
+[node name="Character Select Pos" type="Node3D" parent="CanvasLayer/CameraLocations" unique_id=254677378]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -25.6, -42, 7.8)
 
-[node name="Character Select LookPos" type="Node3D" parent="CanvasLayer/CameraLocations"]
+[node name="Character Select LookPos" type="Node3D" parent="CanvasLayer/CameraLocations" unique_id=1885065914]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -27.9, -42, 7)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 2
+[node name="ColorRect" type="ColorRect" parent="." unique_id=254086173]
+layout_mode = 0
 offset_left = 409.0
 offset_top = 47.0
 offset_right = 1671.0
@@ -5439,8 +5663,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.09, 0.09, 0.09, 0.54902)
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
+[node name="Label" type="Label" parent="." unique_id=2037621673]
+layout_mode = 0
 offset_left = 409.0
 offset_top = 90.0
 offset_right = 1671.0
@@ -5452,7 +5676,8 @@ theme_override_font_sizes/font_size = 100
 text = "The Crown and The Crypt"
 horizontal_alignment = 1
 
-[node name="MainMenuButtons" type="MarginContainer" parent="."]
+[node name="MainMenuButtons" type="MarginContainer" parent="." unique_id=883690163]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -5468,70 +5693,70 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBox" type="VBoxContainer" parent="MainMenuButtons"]
+[node name="VBox" type="VBoxContainer" parent="MainMenuButtons" unique_id=729237303]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMenuButtons/VBox"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuButtons/VBox" unique_id=493784435]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="Host" type="Button" parent="MainMenuButtons/VBox/MarginContainer"]
+[node name="Host" type="Button" parent="MainMenuButtons/VBox/MarginContainer" unique_id=160110411]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Host"
 
-[node name="MarginContainer2" type="MarginContainer" parent="MainMenuButtons/VBox"]
+[node name="MarginContainer2" type="MarginContainer" parent="MainMenuButtons/VBox" unique_id=868655252]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="Join" type="Button" parent="MainMenuButtons/VBox/MarginContainer2"]
+[node name="Join" type="Button" parent="MainMenuButtons/VBox/MarginContainer2" unique_id=718378813]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Join"
 
-[node name="MarginContainer3" type="MarginContainer" parent="MainMenuButtons/VBox"]
+[node name="MarginContainer3" type="MarginContainer" parent="MainMenuButtons/VBox" unique_id=283008711]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="EditChar" type="Button" parent="MainMenuButtons/VBox/MarginContainer3"]
+[node name="EditChar" type="Button" parent="MainMenuButtons/VBox/MarginContainer3" unique_id=518995280]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = " Edit Character "
 
-[node name="MarginContainer4" type="MarginContainer" parent="MainMenuButtons/VBox"]
+[node name="MarginContainer4" type="MarginContainer" parent="MainMenuButtons/VBox" unique_id=1030236222]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="Settings" type="Button" parent="MainMenuButtons/VBox/MarginContainer4"]
+[node name="Settings" type="Button" parent="MainMenuButtons/VBox/MarginContainer4" unique_id=174720139]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Settings"
 
-[node name="MarginContainer5" type="MarginContainer" parent="MainMenuButtons/VBox"]
+[node name="MarginContainer5" type="MarginContainer" parent="MainMenuButtons/VBox" unique_id=136240609]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="Exit" type="Button" parent="MainMenuButtons/VBox/MarginContainer5"]
+[node name="Exit" type="Button" parent="MainMenuButtons/VBox/MarginContainer5" unique_id=1471965020]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Exit"
 
-[node name="SettingsButtons" type="MarginContainer" parent="."]
+[node name="SettingsButtons" type="MarginContainer" parent="." unique_id=1346961524]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -5550,45 +5775,44 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBox" type="VBoxContainer" parent="SettingsButtons"]
+[node name="VBox" type="VBoxContainer" parent="SettingsButtons" unique_id=1194274569]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="SettingsButtons/VBox"]
+[node name="Label" type="Label" parent="SettingsButtons/VBox" unique_id=1139185786]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Mouse Sensitivity"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="SettingsButtons/VBox"]
+[node name="MarginContainer" type="MarginContainer" parent="SettingsButtons/VBox" unique_id=1275255301]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 10
 
-[node name="HSlider" type="HSlider" parent="SettingsButtons/VBox/MarginContainer"]
+[node name="HSlider" type="HSlider" parent="SettingsButtons/VBox/MarginContainer" unique_id=2143975748]
 layout_mode = 2
 min_value = 0.05
 max_value = 0.35
 step = 0.05
 value = 0.2
 
-[node name="MarginContainer5" type="MarginContainer" parent="SettingsButtons/VBox"]
+[node name="MarginContainer5" type="MarginContainer" parent="SettingsButtons/VBox" unique_id=655024861]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="Return" type="Button" parent="SettingsButtons/VBox/MarginContainer5"]
+[node name="Return" type="Button" parent="SettingsButtons/VBox/MarginContainer5" unique_id=761075487]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Exit"
 
-[node name="CharacterSelectButtons" type="MarginContainer" parent="."]
-visible = false
+[node name="CharacterSelectButtons" type="MarginContainer" parent="." unique_id=928072916]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -5604,17 +5828,17 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBox" type="VBoxContainer" parent="CharacterSelectButtons"]
+[node name="VBox" type="VBoxContainer" parent="CharacterSelectButtons" unique_id=114805340]
 layout_mode = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="CharacterSelectButtons/VBox"]
+[node name="MarginContainer3" type="MarginContainer" parent="CharacterSelectButtons/VBox" unique_id=946040032]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="NickInput" type="LineEdit" parent="CharacterSelectButtons/VBox/MarginContainer3"]
+[node name="NickInput" type="LineEdit" parent="CharacterSelectButtons/VBox/MarginContainer3" unique_id=793826394]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_xfgxo")
 theme_override_font_sizes/font_size = 65
@@ -5622,14 +5846,14 @@ placeholder_text = "Your Nickname"
 max_length = 20
 expand_to_text_length = true
 
-[node name="MarginContainer" type="MarginContainer" parent="CharacterSelectButtons/VBox"]
+[node name="MarginContainer" type="MarginContainer" parent="CharacterSelectButtons/VBox" unique_id=1408675041]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="SkinSelect" type="OptionButton" parent="CharacterSelectButtons/VBox/MarginContainer"]
+[node name="SkinSelect" type="OptionButton" parent="CharacterSelectButtons/VBox/MarginContainer" unique_id=639432117]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 item_count = 13
@@ -5660,19 +5884,40 @@ popup/item_11/id = 11
 popup/item_12/text = "Orange"
 popup/item_12/id = 12
 
-[node name="MarginContainer2" type="MarginContainer" parent="CharacterSelectButtons/VBox"]
+[node name="MarginContainer4" type="MarginContainer" parent="CharacterSelectButtons/VBox" unique_id=1156803118]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="Return" type="Button" parent="CharacterSelectButtons/VBox/MarginContainer2"]
+[node name="HatConnector" type="OptionButton" parent="CharacterSelectButtons/VBox/MarginContainer4" unique_id=1724062529]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+item_count = 4
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Top Hat"
+popup/item_1/id = 1
+popup/item_2/text = "Crown"
+popup/item_2/id = 2
+popup/item_3/text = "Pirate"
+popup/item_3/id = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="CharacterSelectButtons/VBox" unique_id=1504780987]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="Return" type="Button" parent="CharacterSelectButtons/VBox/MarginContainer2" unique_id=343216062]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = " Return to Main Menu "
 
-[node name="JoinButtons" type="MarginContainer" parent="."]
+[node name="JoinButtons" type="MarginContainer" parent="." unique_id=7259480]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -5691,64 +5936,62 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBox" type="VBoxContainer" parent="JoinButtons"]
+[node name="VBox" type="VBoxContainer" parent="JoinButtons" unique_id=482276801]
 layout_mode = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="JoinButtons/VBox"]
+[node name="MarginContainer3" type="MarginContainer" parent="JoinButtons/VBox" unique_id=1537708635]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="IP" type="LineEdit" parent="JoinButtons/VBox/MarginContainer3"]
+[node name="IP" type="LineEdit" parent="JoinButtons/VBox/MarginContainer3" unique_id=1273972750]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_xfgxo")
 theme_override_font_sizes/font_size = 65
 placeholder_text = "IP Address"
-max_length = 20
-expand_to_text_length = true
+max_length = 100
 
-[node name="MarginContainer4" type="MarginContainer" parent="JoinButtons/VBox"]
+[node name="MarginContainer4" type="MarginContainer" parent="JoinButtons/VBox" unique_id=688346700]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="Port" type="LineEdit" parent="JoinButtons/VBox/MarginContainer4"]
+[node name="Port" type="LineEdit" parent="JoinButtons/VBox/MarginContainer4" unique_id=221894794]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_xfgxo")
 theme_override_font_sizes/font_size = 65
 placeholder_text = "Port"
 max_length = 20
-expand_to_text_length = true
 
-[node name="MarginContainer2" type="MarginContainer" parent="JoinButtons/VBox"]
+[node name="MarginContainer2" type="MarginContainer" parent="JoinButtons/VBox" unique_id=1139033660]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="JoinGame" type="Button" parent="JoinButtons/VBox/MarginContainer2"]
+[node name="JoinGame" type="Button" parent="JoinButtons/VBox/MarginContainer2" unique_id=1106753932]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Join Game"
 
-[node name="MarginContainer5" type="MarginContainer" parent="JoinButtons/VBox"]
+[node name="MarginContainer5" type="MarginContainer" parent="JoinButtons/VBox" unique_id=822107766]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="Return" type="Button" parent="JoinButtons/VBox/MarginContainer5"]
+[node name="Return" type="Button" parent="JoinButtons/VBox/MarginContainer5" unique_id=742463356]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = " Return to Main Menu "
 
-[node name="HostButtons" type="MarginContainer" parent="."]
+[node name="HostButtons" type="MarginContainer" parent="." unique_id=523184429]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -5767,17 +6010,17 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBox" type="VBoxContainer" parent="HostButtons"]
+[node name="VBox" type="VBoxContainer" parent="HostButtons" unique_id=448899857]
 layout_mode = 2
 
-[node name="MarginContainer4" type="MarginContainer" parent="HostButtons/VBox"]
+[node name="MarginContainer4" type="MarginContainer" parent="HostButtons/VBox" unique_id=1960455056]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="Port" type="LineEdit" parent="HostButtons/VBox/MarginContainer4"]
+[node name="Port" type="LineEdit" parent="HostButtons/VBox/MarginContainer4" unique_id=433007074]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_xfgxo")
 theme_override_font_sizes/font_size = 65
@@ -5786,26 +6029,26 @@ placeholder_text = "Port"
 max_length = 20
 expand_to_text_length = true
 
-[node name="MarginContainer2" type="MarginContainer" parent="HostButtons/VBox"]
+[node name="MarginContainer2" type="MarginContainer" parent="HostButtons/VBox" unique_id=396654666]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="HostGame" type="Button" parent="HostButtons/VBox/MarginContainer2"]
+[node name="HostGame" type="Button" parent="HostButtons/VBox/MarginContainer2" unique_id=1572927322]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Host Game"
 
-[node name="MarginContainer5" type="MarginContainer" parent="HostButtons/VBox"]
+[node name="MarginContainer5" type="MarginContainer" parent="HostButtons/VBox" unique_id=426402725]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="Return" type="Button" parent="HostButtons/VBox/MarginContainer5"]
+[node name="Return" type="Button" parent="HostButtons/VBox/MarginContainer5" unique_id=57713385]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = " Return to Main Menu "

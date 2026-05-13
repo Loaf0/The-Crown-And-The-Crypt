@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtxlnn4bkvfcc"]
+[gd_scene load_steps=4 format=3 uid="uid://dtxlnn4bkvfcc"]
 
-[ext_resource type="PackedScene" uid="uid://4kh2e0uromah" path="res://scenes/levels/world_environment.tscn" id="1_r8fih"]
 [ext_resource type="Texture2D" uid="uid://chawqtd3fcydp" path="res://assets/2d/textures/test/texture_01.png" id="2_36wwx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc26a"]
@@ -20,8 +19,6 @@ transform = Transform3D(0.702724, 0.616144, 0.355731, -0.0993731, -0.410096, 0.9
 light_energy = 1.5
 shadow_enabled = true
 shadow_blur = 0.5
-
-[node name="WorldEnvironment" parent="." instance=ExtResource("1_r8fih")]
 
 [node name="Map" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
@@ -593,8 +590,20 @@ size = Vector3(8, 1.40356, 6)
 material = SubResource("StandardMaterial3D_tc26a")
 
 [node name="Floor11" type="CSGBox3D" parent="Map/Underground"]
-transform = Transform3D(0.982629, -0.185581, 0, 0.185581, 0.982629, 0, 0, 0, 1, -12.3943, 6.00868, -14.7584)
-size = Vector3(11, 1.40356, 6)
+transform = Transform3D(0.982629, -0.18558101, 0, 0.18558101, 0.982629, 0, 0, 0, 1, -12.247107, 9.393007, -14.7584)
+size = Vector3(12.54541, 8, 8)
+material = SubResource("StandardMaterial3D_tc26a")
+
+[node name="Floor25" type="CSGBox3D" parent="Map/Underground/Floor11"]
+transform = Transform3D(1.0000004, 2.9802322e-08, 0, -2.9802322e-08, 1.0000004, 0, 0, 0, 1.0000081, -0.029416084, 0.31017113, 0)
+operation = 2
+size = Vector3(15.459961, 6, 6)
+material = SubResource("StandardMaterial3D_tc26a")
+
+[node name="Floor26" type="CSGBox3D" parent="Map/Underground/Floor11"]
+transform = Transform3D(0.9826261, 0.18566906, 0, -0.18566906, 0.9826261, 0, 0, 0, 1.0000329, 5.8521895, -2.2105513, -1.04904175e-05)
+operation = 2
+size = Vector3(5, 1, 6)
 material = SubResource("StandardMaterial3D_tc26a")
 
 [node name="Floor13" type="CSGBox3D" parent="Map/Underground"]

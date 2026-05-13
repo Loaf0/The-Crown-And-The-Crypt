@@ -8,12 +8,16 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="The Crown and The Crypt"
 config/version="0.0.2"
 run/main_scene="uid://dp8ajof33rkyy"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0, 0.156863, 0.34902, 1)
 config/icon="res://assets/2d/textures/icon.svg"
 

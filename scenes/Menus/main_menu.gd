@@ -35,10 +35,15 @@ var current_state: cameraLocations = cameraLocations.MAIN
 @onready var anim = $"CanvasLayer/3DGodotRobot/AnimationPlayer"
 @onready var cam = $CanvasLayer/MainMenuCamera
 
+@onready var nameplate = $"CanvasLayer/3DGodotRobot2/Nickname"
+
 @onready var charSelectPos = $"CanvasLayer/CameraLocations/Character Select Pos"
 @onready var charLookPos = $"CanvasLayer/CameraLocations/Character Select LookPos"
+@onready var mainPos = $"CanvasLayer/CameraLocations/Main Pos"
+@onready var mainLookPos = $"CanvasLayer/CameraLocations/Main Look Pos"
 
 @onready var skin_selector = $CharacterSelectButtons/VBox/MarginContainer/SkinSelect
+@onready var hat_selector = $CharacterSelectButtons/VBox/MarginContainer4/HatConnector
 
 var desired_pos : Vector3 
 var desired_look_pos : Vector3 
@@ -49,13 +54,16 @@ func _ready() -> void:
 	join_menu.visible = false
 	host_menu.visible = false
 	settings_menu.visible = false
-	var x = orbit_center.x + orbit_radius * cos(orbit_angle)
-	var z = orbit_center.z + orbit_radius * sin(orbit_angle)
-	var y = orbit_height
-	desired_pos = Vector3(x, y, z)
-	desired_look_pos = orbit_center
-	cam.position = desired_pos
-	cam.look_at(desired_look_pos)
+	cam.position = mainPos.position
+	desired_pos = mainPos.position
+	
+	#var x = orbit_center.x + orbit_radius * cos(orbit_angle)
+	#var z = orbit_center.z + orbit_radius * sin(orbit_angle)
+	#var y = orbit_height
+	#desired_pos = Vector3(x, y, z)
+	#desired_look_pos = orbit_center
+	#cam.position = desired_pos
+	#cam.look_at(desired_look_pos)
 
 var orbit_center: Vector3 = Vector3.ZERO
 var orbit_radius: float = 50.0
@@ -66,12 +74,14 @@ var orbit_angle: float = 0.0
 func _process(delta: float) -> void:
 	lerp_cam_to(delta)
 	if current_state == cameraLocations.MAIN:
-		orbit_angle += delta * orbit_speed
-		var x = orbit_center.x + orbit_radius * cos(orbit_angle)
-		var z = orbit_center.z + orbit_radius * sin(orbit_angle)
-		var y = orbit_height
-		desired_pos = Vector3(x, y, z)
-		desired_look_pos = orbit_center
+		desired_pos = mainPos.position
+		desired_look_pos = mainLookPos.position
+		#orbit_angle += delta * orbit_speed
+		#var x = orbit_center.x + orbit_radius * cos(orbit_angle)
+		#var z = orbit_center.z + orbit_radius * sin(orbit_angle)
+		#var y = orbit_height
+		#desired_pos = Vector3(x, y, z)
+		#desired_look_pos = orbit_center
 	if current_state == cameraLocations.CHARACTER_SELECT:
 		desired_pos = charSelectPos.position
 		desired_look_pos = charLookPos.position
@@ -87,6 +97,10 @@ func _on_host_pressed() -> void:
 func _on_join_pressed() -> void:
 	join_menu.show()
 	main_menu.hide()
+
+func _on_join_return_pressed() -> void:
+	join_menu.hide()
+	main_menu.show()
 
 func _on_edit_char_pressed() -> void:
 	anim.play("Idle")
@@ -138,9 +152,9 @@ func get_texture_from_name(skin_name: String) -> CompressedTexture2D:
 
 func set_mesh_texture(mesh_instance: MeshInstance3D, texture: CompressedTexture2D) -> void:
 	if mesh_instance:
-		var material := mesh_instance.get_surface_override_material(0)
-		if material and material is StandardMaterial3D:
-			var new_material := material
+		var current_material := mesh_instance.get_surface_override_material(0)
+		if current_material and current_material is StandardMaterial3D:
+			var new_material := current_material
 			new_material.albedo_texture = texture
 			mesh_instance.set_surface_override_material(0, new_material)
 
@@ -154,6 +168,7 @@ func lerp_cam_to(delta: float) -> void:
 
 func _on_nick_input_text_changed(new_text: String) -> void:
 	Settings.nickname = new_text
+	nameplate.text = new_text
 
 func _on_join_host_return_pressed() -> void:
 	join_menu.hide()
@@ -178,3 +193,15 @@ func _on_main_host_pressed() -> void:
 
 func _on_h_slider_value_changed(value: float) -> void:
 	Settings.MOUSE_SENSITIVITY = value
+#
+#const HAT_MAP = {
+	#0: "none",
+	#1: "top_hat",
+	#2: "crown",
+	#3: "pirate"
+#}
+#
+#func _on_hat_select_item_selected(index: int) -> void:
+	#var hat_id = HAT_MAP.get(index, "none")
+	#print("Selected hat:", hat_id)
+	#Settings.hat = hat_id
