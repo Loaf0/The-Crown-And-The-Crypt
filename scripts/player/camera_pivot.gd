@@ -7,7 +7,7 @@ extends Node3D
 
 # Camera positioning
 @export var camera_dist := -2.0
-@export var camera_height := 3.5
+@export var camera_height := 3.25
 @export var max_camera_dist := -4.5
 @export var min_camera_dist := -2.0
 @export var speed_zoom_mod := 20.0
