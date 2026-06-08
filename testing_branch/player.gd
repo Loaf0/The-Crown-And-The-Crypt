@@ -20,7 +20,7 @@ enum MovementMode {
 @export var ground_acceleration := 40.0
 @export var ground_friction := 30.0
 
-@export var crouch_speed := 5.0
+@export var crouch_speed := 1.25
 @export var crouch_acceleration := 18.0
 @export var crouch_friction := 10.0
 
@@ -75,7 +75,7 @@ var spinning := false
 var spin_timer := 0.0
 
 @export var ground_pound_force := 35.0
-
+var did_ground_pound_jump := false
 @export var wall_slide_speed := 3.0
 @export var wall_jump_force := 12.0
 @export var wall_jump_height := 12.0
@@ -469,6 +469,7 @@ func update_ground_pound_recovery(delta):
 
 func consume_ground_pound_jump():
 	ground_pound_jump_buffer = 0.0
+	did_ground_pound_jump = true
 	in_ground_pound_recovery = false
 	ground_pound_recovery_timer = 0.0
 

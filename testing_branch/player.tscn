@@ -1,13 +1,13 @@
 [gd_scene format=4 uid="uid://chqmvvvpjhorv"]
 
 [ext_resource type="Script" uid="uid://mqyadt34q7xf" path="res://testing_branch/player.gd" id="1_xw0m5"]
-[ext_resource type="PackedScene" uid="uid://bjditwm5d3po4" path="res://testing_branch/Mario.glb" id="2_w3sky"]
+[ext_resource type="PackedScene" uid="uid://dbgxyuchi7omh" path="res://testing_branch/player_models/player_model_test.tscn" id="2_w3sky"]
 [ext_resource type="Texture2D" uid="uid://t1mwrn3m6snl" path="res://assets/2d/particles/circle-xxl.png" id="17_dpci8"]
 [ext_resource type="PackedScene" uid="uid://c1lpe6chkthi0" path="res://scenes/player/Particles/particle_trail.tscn" id="18_4mwkd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mx45w"]
-radius = 0.309272
-height = 1.57107
+radius = 0.37304688
+height = 1.388074
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wb3a5"]
 properties/0/path = NodePath(".:position")
@@ -115,10 +115,11 @@ platform_on_leave = 1
 script = ExtResource("1_xw0m5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=798396966]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.784147, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.69264907, 0)
 shape = SubResource("CapsuleShape3D_mx45w")
 
-[node name="Mario" parent="." unique_id=389899161 instance=ExtResource("2_w3sky")]
+[node name="mariotest" parent="." unique_id=1604176339 instance=ExtResource("2_w3sky")]
+character_path = NodePath("..")
 
 [node name="PlayerNick" type="Node3D" parent="." unique_id=213517]
 
