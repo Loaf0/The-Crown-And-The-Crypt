@@ -1,0 +1,316 @@
+[gd_scene format=3 uid="uid://dmfaa3lx7pm24"]
+
+[ext_resource type="Script" uid="uid://bmf6ebbrv8rl0" path="res://scenes/lobby/lobby_menu.gd" id="1_216ku"]
+[ext_resource type="Theme" uid="uid://b3kq74llqlv3x" path="res://scenes/lobby/theme/MinimalUI.tres" id="1_jmgru"]
+[ext_resource type="StyleBox" uid="uid://dltee5tb5lpnf" path="res://scenes/lobby/theme/lobby_panel_container_styleboxflat.tres" id="3_7ixe1"]
+[ext_resource type="Shader" uid="uid://cejq1gisa18xi" path="res://scenes/lobby/theme/background.gdshader" id="4_a04cy"]
+[ext_resource type="PackedScene" uid="uid://b5bs8xlgxmi3q" path="res://scenes/lobby/lobby_chat/lobby_chat.tscn" id="6_j0pei"]
+[ext_resource type="PackedScene" uid="uid://cr0rjm7booup1" path="res://scenes/lobby/lobby_color_grid/lobby_color_grid.tscn" id="6_j2isk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j2isk"]
+shader = ExtResource("4_a04cy")
+shader_parameter/stretch = 0.8
+shader_parameter/thing1 = 0.30000000447036
+shader_parameter/thing2 = 0.20000000298024
+shader_parameter/thing3 = 1.0000000149012
+shader_parameter/scale = 1.0
+shader_parameter/speed = 20.00000095
+
+[sub_resource type="Gradient" id="Gradient_a04cy"]
+offsets = PackedFloat32Array(0.66504854, 0.7184466)
+colors = PackedColorArray(0.4, 0.4, 0.4, 1, 0.4, 0.4, 0.4, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_26th1"]
+gradient = SubResource("Gradient_a04cy")
+width = 25
+height = 25
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="LobbyMenu" type="Control" unique_id=786900034]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jmgru")
+script = ExtResource("1_216ku")
+
+[node name="Color" type="ColorRect" parent="." unique_id=1199722989]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(6.136671e-06, 0.11346211, 0.37426347, 1)
+
+[node name="Shader" type="ColorRect" parent="." unique_id=1445471716]
+material = SubResource("ShaderMaterial_j2isk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1822194871]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Columns" type="HBoxContainer" parent="Margin" unique_id=966919163]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="ColumnUser" type="VBoxContainer" parent="Margin/Columns" unique_id=1052287622]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="UserContainer" type="PanelContainer" parent="Margin/Columns/ColumnUser" unique_id=1630350635]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_7ixe1")
+
+[node name="UserLogin" type="VBoxContainer" parent="Margin/Columns/ColumnUser/UserContainer" unique_id=1119280699]
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin" unique_id=1241935090]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin/H" unique_id=1387274135]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Connect"
+
+[node name="ConnectionLight" type="TextureRect" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin/H" unique_id=1321573466]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("GradientTexture2D_26th1")
+
+[node name="InputUsername" type="LineEdit" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin" unique_id=1773994674]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Username"
+clear_button_enabled = true
+
+[node name="H2" type="HBoxContainer" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin" unique_id=1607050088]
+layout_mode = 2
+
+[node name="ButtonConnect" type="Button" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin/H2" unique_id=72442031]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Connect"
+
+[node name="ButtonDisconnect" type="Button" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin/H2" unique_id=1626096592]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Disconnect"
+
+[node name="ButtonQuit" type="Button" parent="Margin/Columns/ColumnUser/UserContainer/UserLogin" unique_id=1182468232]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[node name="UserListContainer" type="PanelContainer" parent="Margin/Columns/ColumnUser" unique_id=569960698]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_7ixe1")
+
+[node name="V" type="VBoxContainer" parent="Margin/Columns/ColumnUser/UserListContainer" unique_id=1777405636]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Columns/ColumnUser/UserListContainer/V" unique_id=4643945]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Online Users"
+
+[node name="HSeparator" type="HSeparator" parent="Margin/Columns/ColumnUser/UserListContainer/V" unique_id=367374347]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin/Columns/ColumnUser/UserListContainer/V" unique_id=752198502]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="UserList" type="VBoxContainer" parent="Margin/Columns/ColumnUser/UserListContainer/V/ScrollContainer" unique_id=1503851772]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="ColumnLobbyList" type="PanelContainer" parent="Margin/Columns" unique_id=1102859318]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_7ixe1")
+
+[node name="V" type="VBoxContainer" parent="Margin/Columns/ColumnLobbyList" unique_id=1217569210]
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="Margin/Columns/ColumnLobbyList/V" unique_id=231758298]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Columns/ColumnLobbyList/V/H" unique_id=861681066]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Lobby List"
+
+[node name="ButtonLobbyCreate" type="Button" parent="Margin/Columns/ColumnLobbyList/V/H" unique_id=1939574817]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Create Lobby"
+
+[node name="HSeparator" type="HSeparator" parent="Margin/Columns/ColumnLobbyList/V" unique_id=1288504393]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin/Columns/ColumnLobbyList/V" unique_id=2002618961]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LobbyList" type="VBoxContainer" parent="Margin/Columns/ColumnLobbyList/V/ScrollContainer" unique_id=83752010]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColumnLobby" type="PanelContainer" parent="Margin/Columns" unique_id=929611834]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("3_7ixe1")
+
+[node name="LobbyVBox" type="VBoxContainer" parent="Margin/Columns/ColumnLobby" unique_id=1008315741]
+layout_mode = 2
+
+[node name="LobbyTop" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox" unique_id=870000782]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="H" type="HBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop" unique_id=668452154]
+layout_mode = 2
+
+[node name="LabelLobbyTitle" type="Label" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/H" unique_id=1323366830]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "LOBBY_PLACEHOLDER"
+
+[node name="ButtonLobbyLeave" type="Button" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/H" unique_id=1695341354]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Leave Lobby"
+
+[node name="VBoxMap" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop" unique_id=1211242939]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap" unique_id=338358678]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap" unique_id=1917984911]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 48
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer" unique_id=1801508748]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorGrid" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/VBoxContainer" unique_id=1936028094 instance=ExtResource("6_j2isk")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="LabelPlayers" type="Label" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/VBoxContainer" unique_id=1818378747]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 21
+text = "Players:"
+
+[node name="LobbyUserList" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/VBoxContainer" unique_id=1151808543]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="V" type="VBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer" unique_id=1875928617]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxBots" type="HBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/V" unique_id=1681800703]
+layout_mode = 2
+
+[node name="Bot Count" type="Label" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/V/HBoxBots" unique_id=85166468]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Bot Count:"
+
+[node name="DisplayBotCount" type="LineEdit" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/V/HBoxBots" unique_id=500804621]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "0"
+editable = false
+
+[node name="ButtonBotRemove" type="Button" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/V/HBoxBots" unique_id=1097600007]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "-"
+
+[node name="ButtonBotAdd" type="Button" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/V/HBoxBots" unique_id=761965250]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/V" unique_id=1901037380]
+layout_mode = 2
+
+[node name="LabelGame" type="Label" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/V/HBoxContainer" unique_id=769892254]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Select Game:"
+
+[node name="OptionButton" type="OptionButton" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/V/HBoxContainer" unique_id=35500285]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 1
+popup/item_0/text = "3D FPS Demo"
+popup/item_0/id = 0
+
+[node name="TextureRect" type="TextureRect" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/VBoxMap/HBoxContainer/V" unique_id=1547628407]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 8
+expand_mode = 2
+stretch_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop" unique_id=1354332235]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/HBoxContainer" unique_id=1892286550]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonLobbyStart" type="Button" parent="Margin/Columns/ColumnLobby/LobbyVBox/LobbyTop/HBoxContainer" unique_id=449534758]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Start Game"
+
+[node name="LobbyChat" parent="Margin/Columns/ColumnLobby/LobbyVBox" unique_id=2138946648 instance=ExtResource("6_j0pei")]
+layout_mode = 2

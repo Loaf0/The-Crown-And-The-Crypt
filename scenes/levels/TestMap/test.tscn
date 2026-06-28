@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bqmntwsbeb6rq"]
+
+[ext_resource type="Texture2D" uid="uid://dwn2t6edax3wn" path="res://assets/2d/textures/test/Orange/texture_10.png" id="1_g26py"]
+[ext_resource type="PackedScene" uid="uid://4kh2e0uromah" path="res://scenes/levels/world_environment.tscn" id="2_qgfq6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vaebk"]
+albedo_texture = ExtResource("1_g26py")
+uv1_triplanar = true
+
+[node name="Test" type="Node3D" unique_id=2021404261]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=370613423]
+material_override = SubResource("StandardMaterial3D_vaebk")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1013657882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.5, -0.25, -2.5)
+size = Vector3(140, 0.5, 128)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=125478191]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 7)
+size = Vector3(17, 8, 3)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1390900736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 3.5, 4)
+size = Vector3(2, 8, 9)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D" unique_id=980306957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 2, -5)
+size = Vector3(10, 5, 9)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D" unique_id=609972918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 3.5, -1)
+size = Vector3(10, 8, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1207490019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 7, 11.5)
+size = Vector3(10, 1, 24)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1228250522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, 14.5)
+size = Vector3(25, 1, 18)
+
+[node name="WorldEnvironment2" parent="." unique_id=1287658799 instance=ExtResource("2_qgfq6")]

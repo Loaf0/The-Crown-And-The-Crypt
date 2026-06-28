@@ -91,8 +91,13 @@ func _process(delta: float) -> void:
 
 func _on_host_pressed() -> void:
 	Settings.hosting = true
-	if level_scene:
-		get_tree().change_scene_to_packed(level_scene)
+	var scene_to_load: PackedScene = level_scene
+	if not scene_to_load:
+		scene_to_load = load("res://scenes/lobby/world/world.tscn") as PackedScene
+	if scene_to_load:
+		get_tree().change_scene_to_packed(scene_to_load)
+	else:
+		push_error("No level scene assigned and fallback not found.")
 
 func _on_join_pressed() -> void:
 	join_menu.show()
@@ -184,8 +189,13 @@ func _on_port_text_changed(new_text: String) -> void:
 
 func _on_join_game_pressed() -> void:
 	Settings.hosting = false
-	if level_scene:
-		get_tree().change_scene_to_packed(level_scene)
+	var scene_to_load: PackedScene = level_scene
+	if not scene_to_load:
+		scene_to_load = load("res://scenes/lobby/world/world.tscn") as PackedScene
+	if scene_to_load:
+		get_tree().change_scene_to_packed(scene_to_load)
+	else:
+		push_error("No level scene assigned and fallback not found.")
 
 func _on_main_host_pressed() -> void:
 	host_menu.show()

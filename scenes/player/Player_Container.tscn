@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://c131oasippyu5"]
+
+[ext_resource type="PackedScene" uid="uid://chqmvvvpjhorv" path="res://scenes/player/player.tscn" id="1_ug4g6"]
+[ext_resource type="PackedScene" uid="uid://djuigseoqr6rk" path="res://scenes/player/camera.tscn" id="2_ivk6s"]
+
+[node name="PlayerContainer" type="Node3D" unique_id=2057499423]
+
+[node name="Player" parent="." unique_id=246224597 instance=ExtResource("1_ug4g6")]
+debug_print_jumps = null
+movement_mode = null
+max_ground_speed = null
+ground_acceleration = null
+ground_friction = null
+crouch_speed = null
+crouch_acceleration = null
+crouch_friction = null
+air_acceleration = null
+air_drag = null
+max_air_speed = null
+gravity = null
+max_fall_speed = null
+jump_velocity = null
+jump_hold_time = null
+jump_hold_force = null
+rise_gravity = null
+fall_gravity = null
+apex_gravity = null
+second_jump_multiplier = null
+third_jump_multiplier = null
+crouch_jump_multiplier = null
+ground_pound_jump_multiplier = null
+crouch_jump_air_control_reduction = null
+crouch_jump_air_lock_time = null
+rotation_speed = null
+hard_turn_angle = null
+ground_pound_freeze_time = null
+ground_pound_recovery_time = null
+ground_pound_jump_boost = null
+roll_out_time = null
+bonk_wall_bounce_factor = null
+bonk_ground_bounce_factor = null
+bonk_min_bounce_speed = null
+bonk_recovery_time = null
+slide_threshold = null
+slide_friction = null
+dive_force = null
+dive_air_control = null
+spin_upward_velocity = null
+spin_horizontal_boost = null
+spin_air_control = null
+spin_duration = null
+spin_start_damping = null
+spin_rise_force = null
+spin_max_upward_speed = null
+dive_spin_lock_time = null
+ground_pound_force = null
+wall_slide_speed = null
+wall_jump_force = 16.0
+wall_jump_height = 18.0
+coyote_time = null
+jump_buffer_time = null
+ground_pound_jump_buffer_time = null
+
+[node name="Camera" parent="." unique_id=1960010252 instance=ExtResource("2_ivk6s")]

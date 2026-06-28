@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var player: Node3D
+var player: PlayerCharacter
 
 @onready var camera: Camera3D = $RayCast3D/Camera
 @onready var raycast: RayCast3D = $RayCast3D
@@ -33,12 +33,32 @@ var actual_camera_dist := camera_dist
 @export var min_safe_distance := 0.1
 var last_safe_distance := camera_dist  # Track last valid distance
 
+func _enter_tree():
+	set_multiplayer_authority(_get_authority_id())
+
+func _get_authority_id() -> int:
+	var authority_source: Node = self
+	while authority_source != null:
+		if str(authority_source.name).is_valid_int():
+			return str(authority_source.name).to_int()
+		authority_source = authority_source.get_parent()
+
+	return 0
+
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	add_to_group("player_cameras")
+	while player == null:
+		find_local_player()
+		if player == null:
+			await get_tree().process_frame
+
 	yaw = rotation_degrees.y
 	pitch = rotation_degrees.x
-	
+
 	raycast.target_position = Vector3(0, 0, -max_camera_dist)
+
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	camera.current = true
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -52,6 +72,12 @@ func _physics_process(delta: float) -> void:
 	
 	handle_controller_input(delta)
 	update_camera_position(delta)
+
+func find_local_player():
+	for p in get_tree().get_nodes_in_group("players"):
+		if p.is_multiplayer_authority():
+			player = p
+			return
 
 func handle_controller_input(delta: float) -> void:
 	var look_x := Input.get_action_strength("look_right") - Input.get_action_strength("look_left")

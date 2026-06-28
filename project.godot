@@ -14,24 +14,21 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="The Crown and The Crypt"
+config/name="The Crown and The Crypt 2.0 Trim"
 config/version="0.0.2"
-run/main_scene="uid://dp8ajof33rkyy"
-config/features=PackedStringArray("4.6", "Forward Plus")
+run/main_scene="uid://ciki32j3qm4up"
+config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/bg_color=Color(0, 0.156863, 0.34902, 1)
-config/icon="res://assets/2d/textures/icon.svg"
 
 [autoload]
 
-Settings="*res://scripts/global/Settings.gd"
 MouseLock="*res://scripts/player/mouse_lock.gd"
-Network="*res://scripts/global/Network.gd"
-Global="*res://scripts/global/Global.gd"
+LobbySystem="*uid://blphobuppuw3y"
+Draw3d="*uid://cm4dpcr4obkoi"
+Settings="*uid://dq3w4ynbyfn5"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
 window/stretch/aspect="keep_width"
 
 [editor_plugins]
@@ -49,7 +46,6 @@ folder_colors={
 "res://assets/audio/sfx/": "red",
 "res://scenes/": "yellow",
 "res://scenes/levels/": "yellow",
-"res://scenes/levels/test/": "yellow",
 "res://scenes/player/": "yellow",
 "res://scripts/": "blue",
 "res://scripts/global/": "blue",
